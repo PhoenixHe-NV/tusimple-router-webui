@@ -51,22 +51,32 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import palette from './palette';
+
+const muiTheme = getMuiTheme({ palette });
 
 const render = (translatedMessages) => {
   ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={translatedMessages}>
-        <Router
-          history={history}
-          routes={rootRoute}
-          render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
-            applyRouterMiddleware(useScroll())
-          }
-        />
-      </LanguageProvider>
-    </Provider>,
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Provider store={store}>
+        <LanguageProvider messages={translatedMessages}>
+          <Router
+            history={history}
+            routes={rootRoute}
+            render={
+              // Scroll to top when going to a new page, imitating default browser
+              // behaviour
+              applyRouterMiddleware(useScroll())
+            }
+          />
+        </LanguageProvider>
+      </Provider>
+    </MuiThemeProvider>,
     document.getElementById('app')
   );
 };
@@ -86,6 +96,7 @@ if (!window.Intl) {
   Promise.all([
     System.import('intl'),
     System.import('intl/locale-data/jsonp/en.js'),
+    System.import('intl/locale-data/jsonp/de.js'),
   ]).then(() => render(translationMessages));
 } else {
   render(translationMessages);

@@ -1,18 +1,17 @@
-.tusimple-logo svg {
+.logo {
 
   path {
     transition-duration: .2s;
   }
 
   &:hover {
-
     cursor: pointer;
 
-    #back {
+    :global(#back) {
       fill-opacity: 0;
     }
 
-    #text {
+    :global(#text) {
       fill: #FFF;
       fill-opacity: 1;
     }

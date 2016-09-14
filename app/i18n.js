@@ -13,7 +13,8 @@ addLocaleData(enLocaleData);
 addLocaleData(zhLocaleData);
 
 export const appLocales = [
-  'en', 'zh',
+  'en',
+  'zh',
 ];
 
 import enTranslationMessages from './translations/en.json';
