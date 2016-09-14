@@ -1,0 +1,21 @@
+.tusimple-logo svg {
+
+  path {
+    transition-duration: .2s;
+  }
+
+  &:hover {
+
+    cursor: pointer;
+
+    #back {
+      fill-opacity: 0;
+    }
+
+    #text {
+      fill: #FFF;
+      fill-opacity: 1;
+    }
+  }
+
+}

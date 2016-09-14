@@ -2,11 +2,11 @@
   {
     "id": "app.components.HomePage.header",
     "defaultMessage": "This is HomePage components !",
-    "message": ""
+    "message": "这是主页！"
   },
   {
     "id": "app.components.NotFoundPage.header",
     "defaultMessage": "This is NotFoundPage component !",
-    "message": ""
+    "message": "这是404页"
   }
 ]
