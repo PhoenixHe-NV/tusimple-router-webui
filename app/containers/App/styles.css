@@ -4,6 +4,27 @@
  * App container styles
  */
 
-.container {
-  display: block;
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
+
+.container {
+  flex-direction: column;
+  width: 100%;
+}
+
+.content {
+  align-items: flex-start;
+  margin-top: 48px;
+  align-self: center;
+  position: relative;
+  width: 100%;
+
+  @media(min-width: 960px) {
+    width: 960px;
+  }
+}
+

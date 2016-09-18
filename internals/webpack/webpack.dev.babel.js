@@ -39,7 +39,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Load the CSS in a style tag in development
   // cssLoaders: 'style-loader!css-loader?modules&importLoaders=1&sourceMap!postcss-loader!sass-loader',
-  cssLoaders: ['style', 'css?modules&importLoaders=1&camelCase&sourceMap', 'postcss', 'sass&sourceMap'],
+  cssLoaders: ['style', 'css?modules&importLoaders=1&camelCase&sourceMap', 'postcss', 'sass?sourceMap'],
 
   // Tell babel that we want to hot-reload
   babelQuery: {

@@ -14,6 +14,7 @@ import View from 'react-flexbox';
 import messages from './messages';
 import palette from '../../palette';
 import TuSimpleLogo from '../TusimpleLogo';
+import styles from './styles.css';
 
 class Header extends React.Component {
 
@@ -46,29 +47,28 @@ class Header extends React.Component {
             style={{ backgroundColor: palette.primary1Color, justifyContent: 'center' }}
           >
             <View
-              width="960px"
+              style={{ flex: '0 1 auto', justifyContent: 'flex-start' }}
+              className={styles.container}
             >
 
               <View auto width="56px" style={{ justifyContent: 'center' }}>
                 <TuSimpleLogo />
               </View>
 
-              <View>
-                <Tabs
-                  onChange={this.handleChange}
-                  value={this.state.slideIndex}
-                  tabItemContainerStyle={{ width: 280, height: 48 }}
-                >
-                  <Tab
-                    label={<FormattedMessage {...messages.status} />}
-                    value={0}
-                  />
-                  <Tab
-                    label={<FormattedMessage {...messages.setting} />}
-                    value={1}
-                  />
-                </Tabs>
-              </View>
+              <Tabs
+                onChange={this.handleChange}
+                value={this.state.slideIndex}
+                tabItemContainerStyle={{ width: 280, height: 48 }}
+              >
+                <Tab
+                  label={<FormattedMessage {...messages.status} />}
+                  value={0}
+                />
+                <Tab
+                  label={<FormattedMessage {...messages.setting} />}
+                  value={1}
+                />
+              </Tabs>
 
             </View>
 
