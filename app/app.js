@@ -61,7 +61,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import palette from './palette';
 
-const muiTheme = getMuiTheme({ palette });
+const muiTheme = getMuiTheme({
+  palette,
+  // fontFamily: 'Roboto, sans-serif',
+});
 
 const render = (translatedMessages) => {
   ReactDOM.render(

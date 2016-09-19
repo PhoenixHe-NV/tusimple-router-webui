@@ -10,24 +10,41 @@ import { FormattedMessage } from 'react-intl';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { Paper } from 'material-ui';
 import View from 'react-flexbox';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
 
 import messages from './messages';
 import palette from '../../palette';
 import TuSimpleLogo from '../TusimpleLogo';
 import styles from './styles.css';
 
+
+@connect(null, (dispatch) => bindActionCreators({
+  push,
+}, dispatch))
 class Header extends React.Component {
 
   static propTypes = {
     counter: PropTypes.number,
-    inc: PropTypes.func,
-    dec: PropTypes.func,
+    push: PropTypes.func,
   };
+
+  static routes = ['/status', '/setting'];
+
+  static getIndexFromPath(pathname) {
+    for (let i = 0; i < Header.routes.length; ++i) {
+      if (pathname.startsWith(this.routes[i])) {
+        return i;
+      }
+    }
+    return -1;
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 0,
+      slideIndex: Header.getIndexFromPath(window.location.pathname),
     };
   }
 
@@ -35,6 +52,7 @@ class Header extends React.Component {
     this.setState({
       slideIndex: value,
     });
+    this.props.push(Header.routes[value]);
   };
 
   render() {
@@ -46,10 +64,7 @@ class Header extends React.Component {
             height="48px"
             style={{ backgroundColor: palette.primary1Color, justifyContent: 'center' }}
           >
-            <View
-              style={{ flex: '0 1 auto', justifyContent: 'flex-start' }}
-              className={styles.container}
-            >
+            <div className={styles.container}>
 
               <View auto width="56px" style={{ justifyContent: 'center' }}>
                 <TuSimpleLogo />
@@ -70,7 +85,7 @@ class Header extends React.Component {
                 />
               </Tabs>
 
-            </View>
+            </div>
 
           </View>
         </Paper>

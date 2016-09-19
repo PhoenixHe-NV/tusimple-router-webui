@@ -1,5 +1,10 @@
 .container {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+  width: 960px;
+
   @media(min-width: 960px) {
-    width: 960px;
+    flex: 0 1 auto;
   }
 }

@@ -1,5 +1,15 @@
 [
   {
+    "id": "app.components.Header.setting",
+    "defaultMessage": "setting",
+    "message": ""
+  },
+  {
+    "id": "app.components.Header.status",
+    "defaultMessage": "status",
+    "message": ""
+  },
+  {
     "id": "app.components.HomePage.header",
     "defaultMessage": "This is HomePage components !",
     "message": ""

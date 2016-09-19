@@ -11,6 +11,10 @@ import Helmet from 'react-helmet';
 {{/if}}
 {{#if wantActionsAndReducer}}
 import select{{properCase name}} from './selectors';
+import reducer from './reducer';
+{{/if}}
+{{#if wantSagas}}
+import sagas from './sagas';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -20,7 +24,17 @@ import messages from './messages';
 import styles from './styles.css';
 {{/if}}
 
-export class {{ properCase name }} extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class {{ properCase name }} extends React.Component {
+
+  static toInject = {
+{{#if wantActionsAndReducer}}
+    reducer,
+{{/if}}
+{{#if wangSagas}}
+    sagas,
+{{/if}}
+  };
+
   render() {
     return (
       {{#if wantCSS}}
@@ -37,7 +51,9 @@ export class {{ properCase name }} extends React.Component { // eslint-disable-l
       />
       {{/if}}
       {{#if wantMessages}}
-        <FormattedMessage {...messages.header} />
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
       {{/if}}
       </div>
     );

@@ -1,14 +1,14 @@
 import {
-  cyan500, cyan700,
   pinkA200,
+  green500, green700,
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
 
 export default {
-  primary1Color: cyan500,
-  primary2Color: cyan700,
+  primary1Color: green500,
+  primary2Color: green700,
   primary3Color: grey400,
   accent1Color: pinkA200,
   accent2Color: grey100,
@@ -18,7 +18,7 @@ export default {
   canvasColor: white,
   borderColor: grey300,
   disabledColor: fade(darkBlack, 0.3),
-  pickerHeaderColor: cyan500,
+  pickerHeaderColor: green500,
   clockCircleColor: fade(darkBlack, 0.07),
   shadowColor: fullBlack,
 };

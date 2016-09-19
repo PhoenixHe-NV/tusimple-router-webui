@@ -4,43 +4,45 @@
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
-const errorLoading = (err) => {
-  console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
-};
-
-const loadModule = (cb) => (componentModule) => {
-  cb(null, componentModule.default);
-};
+import StatusPage from 'containers/StatusPage';
+import SettingPage from 'containers/SettingPage';
+import NotFoundPage from 'containers/NotFoundPage';
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
 
+  const pages = {
+    SettingPage, StatusPage,
+  };
+
+  Object.keys(pages).forEach((pageName) => {
+    const { toInject } = pages[pageName];
+
+    if (!toInject) {
+      return;
+    }
+
+    if (toInject.reducer) {
+      const name = pageName[0].toLowerCase() + pageName.slice(1);
+      injectReducer(name, toInject.reducer);
+    }
+
+    if (toInject.sagas) {
+      injectSagas(toInject.sagas);
+    }
+  });
+
   return [
     {
-      path: '/',
-      name: 'home',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/HomePage'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([component]) => {
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
+      path: '/status',
+      component: StatusPage,
+    }, {
+      path: '/setting',
+      component: SettingPage,
     }, {
       path: '*',
-      name: 'notfound',
-      getComponent(nextState, cb) {
-        System.import('containers/NotFoundPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
+      component: NotFoundPage,
     },
   ];
 }
