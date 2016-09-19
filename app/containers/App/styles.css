@@ -9,16 +9,26 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1400;
 }
 
-.container {
-  flex-direction: column;
-  width: 100%;
+.content-container {
+  height: 100%;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 48px;
+  width: 240px;
 }
 
 .content {
-  align-items: flex-start;
+  align-items: center;
   margin-top: 48px;
+  margin-left: 256px;
   align-self: center;
   position: relative;
   width: 100%;

@@ -7,13 +7,16 @@ import { getAsyncInjectors } from 'utils/asyncInjectors';
 import StatusPage from 'containers/StatusPage';
 import SettingPage from 'containers/SettingPage';
 import NotFoundPage from 'containers/NotFoundPage';
+import AppMenu from 'containers/AppMenu';
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
 
   const pages = {
-    SettingPage, StatusPage,
+    AppMenu,
+    SettingPage,
+    StatusPage,
   };
 
   Object.keys(pages).forEach((pageName) => {
