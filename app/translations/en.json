@@ -1,22 +1,42 @@
 [
   {
-    "id": "app.components.Header.setting",
-    "defaultMessage": "setting",
-    "message": ""
-  },
-  {
-    "id": "app.components.Header.status",
-    "defaultMessage": "status",
-    "message": ""
-  },
-  {
-    "id": "app.components.HomePage.header",
-    "defaultMessage": "This is HomePage components !",
-    "message": ""
-  },
-  {
     "id": "app.components.NotFoundPage.header",
     "defaultMessage": "This is NotFoundPage component !",
+    "message": ""
+  },
+  {
+    "id": "app.components.NotFoundPage.title",
+    "defaultMessage": "Page Not Found",
+    "message": ""
+  },
+  {
+    "id": "app.containers.HomePage.header",
+    "defaultMessage": "This is HomePage container !",
+    "message": ""
+  },
+  {
+    "id": "app.containers.HomePage.title",
+    "defaultMessage": "Home",
+    "message": ""
+  },
+  {
+    "id": "app.containers.SettingPage.header",
+    "defaultMessage": "This is SettingPage container !",
+    "message": ""
+  },
+  {
+    "id": "app.containers.SettingPage.title",
+    "defaultMessage": "Settings",
+    "message": ""
+  },
+  {
+    "id": "app.containers.StatusPage.header",
+    "defaultMessage": "This is StatusPage container !",
+    "message": ""
+  },
+  {
+    "id": "app.containers.StatusPage.title",
+    "defaultMessage": "Status",
     "message": ""
   }
 ]

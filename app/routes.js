@@ -4,6 +4,7 @@
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
 
+import HomePage from 'containers/HomePage';
 import StatusPage from 'containers/StatusPage';
 import SettingPage from 'containers/SettingPage';
 import NotFoundPage from 'containers/NotFoundPage';
@@ -11,7 +12,7 @@ import AppMenu from 'containers/AppMenu';
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
+  const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
   const pages = {
     AppMenu,
@@ -38,10 +39,13 @@ export default function createRoutes(store) {
 
   return [
     {
+      path: '/',
+      component: HomePage,
+    }, {
       path: '/status',
       component: StatusPage,
     }, {
-      path: '/setting',
+      path: '/settings',
       component: SettingPage,
     }, {
       path: '*',

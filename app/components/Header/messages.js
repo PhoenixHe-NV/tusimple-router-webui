@@ -6,12 +6,4 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  status: {
-    id: 'app.components.Header.status',
-    defaultMessage: 'status',
-  },
-  setting: {
-    id: 'app.components.Header.setting',
-    defaultMessage: 'setting',
-  },
 });

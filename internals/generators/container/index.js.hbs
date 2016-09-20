@@ -4,11 +4,13 @@
  *
  */
 
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
-import Helmet from 'react-helmet';
+import HelmetIntl from 'components/HelmetIntl';
 {{/if}}
+
 {{#if wantActionsAndReducer}}
 import select{{properCase name}} from './selectors';
 import reducer from './reducer';
@@ -24,13 +26,14 @@ import messages from './messages';
 import styles from './styles.css';
 {{/if}}
 
-export class {{ properCase name }} extends React.Component {
+
+class {{ properCase name }} extends Component {
 
   static toInject = {
 {{#if wantActionsAndReducer}}
     reducer,
 {{/if}}
-{{#if wangSagas}}
+{{#if wantSagas}}
     sagas,
 {{/if}}
   };
@@ -43,12 +46,7 @@ export class {{ properCase name }} extends React.Component {
       <div>
       {{/if}}
       {{#if wantHeaders}}
-      <Helmet
-        title="{{properCase name}}"
-        meta={{curly true}}[
-          {{curly true}} name: 'description', content: 'Description of {{properCase name}}' {{curly}},
-        ]{{curly}}
-      />
+        <HelmetIntl appTitle={messages.title} />
       {{/if}}
       {{#if wantMessages}}
         <h1>
@@ -60,18 +58,11 @@ export class {{ properCase name }} extends React.Component {
   }
 }
 
-{{#if wantActionsAndReducer}}
-const mapStateToProps = select{{properCase name}}();
-{{/if}}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
+export default connect(
 {{#if wantActionsAndReducer}}
-export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
-{{else}}
-export default connect(mapDispatchToProps)({{ properCase name }});
+    select{{properCase name}}(),
 {{/if}}
+  (dispatch) => bindActionCreators({
+  }, dispatch)
+)({{ properCase name }});

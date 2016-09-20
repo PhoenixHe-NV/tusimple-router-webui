@@ -1,7 +1,6 @@
 import {
-  pinkA200,
   green500, green700,
-  grey100, grey300, grey400, grey500,
+  grey100, grey300, grey400, grey500, deepOrange500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -10,7 +9,7 @@ export default {
   primary1Color: green500,
   primary2Color: green700,
   primary3Color: grey400,
-  accent1Color: pinkA200,
+  accent1Color: deepOrange500,
   accent2Color: grey100,
   accent3Color: grey500,
   textColor: darkBlack,
