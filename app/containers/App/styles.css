@@ -4,6 +4,9 @@
  * App container styles
  */
 
+$menu-width: 240px;
+$content-max-width: 960px;
+
 .container {
   height: 100%;
 }
@@ -22,15 +25,28 @@
   left: 0;
   bottom: 0;
   padding-top: 48px;
-  width: 240px;
+  width: $menu-width;
   display: flex;
   flex-direction: column;
 }
 
-.content {
+.content-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   margin-top: 48px;
-  margin-left: 240px;
-  background-color: #FFF;
-  max-width: 960px;
+  margin-left: $menu-width;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  flex: 1;
+  width: 100%;
+
+  @media (min-width: $menu-width + $content-max-width) {
+    width: $content-max-width;
+  }
 }
 

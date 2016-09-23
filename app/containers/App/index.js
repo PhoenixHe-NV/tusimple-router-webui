@@ -27,8 +27,10 @@ export default class App extends React.PureComponent {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.content}>
-          { React.Children.toArray(this.props.children) }
+        <div className={styles.contentContainer}>
+          <div className={styles.content}>
+            { React.Children.toArray(this.props.children) }
+          </div>
         </div>
         <div className={styles.menu}>
           <AppMenu />
