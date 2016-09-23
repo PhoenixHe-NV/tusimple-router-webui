@@ -96,7 +96,7 @@ const ReactBoilerplate = {
 };
 ```
 
-And finally edit `app/app.js`, and add the following after the line `import 'sanitize.css/sanitize.css';`
+And finally edit `app/index.js`, and add the following after the line `import 'sanitize.css/sanitize.css';`
 ```javascript
 import 'bootstrap-css-only/css/bootstrap.min.css';
 ```

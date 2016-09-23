@@ -4,16 +4,16 @@
  * App container styles
  */
 
-.header-container {
+.container {
+  height: 100%;
+}
+
+.header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1400;
-}
-
-.content-container {
-  height: 100%;
 }
 
 .menu {
@@ -23,18 +23,14 @@
   bottom: 0;
   padding-top: 48px;
   width: 240px;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-  align-items: center;
   margin-top: 48px;
-  margin-left: 256px;
-  align-self: center;
-  position: relative;
-  width: 100%;
-
-  @media(min-width: 960px) {
-    width: 960px;
-  }
+  margin-left: 240px;
+  background-color: #FFF;
+  max-width: 960px;
 }
 

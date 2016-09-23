@@ -19,5 +19,5 @@ all related dependencies from [`package.json`](/package.json)!
 
 ## Removing `sanitize.css`
 
-Delete [lines 44 and 45 in `app.js`](../../app/app.js#L44-L45) and remove it
+Delete [lines 44 and 45 in `index.js`](../../app/index.js#L44-L45) and remove it
 from the `dependencies` in [`package.json`](../../package.json)!

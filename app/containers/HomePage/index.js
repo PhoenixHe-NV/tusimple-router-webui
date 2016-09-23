@@ -22,6 +22,12 @@ export default class HomePage extends Component {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
       </div>
     );
   }

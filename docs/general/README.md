@@ -100,7 +100,7 @@ these fonts are downloaded. That means a lot of waiting time in which users
 could already read the content.
 
 [FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a class
-to the `body` when the fonts have loaded. (see [`app.js`](../../app/app.js#L26-L36)
+to the `body` when the fonts have loaded. (see [`index.js`](../../app/index.js#L26-L36)
 and [`App/styles.css`](../../app/containers/App/styles.css))
 
 ### Adding a new font
@@ -113,7 +113,7 @@ for Open Sans from the [`index.html`](../../app/index.html)!)
 with only web-save fonts. In the `body.jsFontLoaded` tag, specify your
 `font-family` stack with your web font.
 
-3. In `app.js` add a `<fontName>Observer` for your font.
+3. In `index.js` add a `<fontName>Observer` for your font.
 
 ## Image optimization
 

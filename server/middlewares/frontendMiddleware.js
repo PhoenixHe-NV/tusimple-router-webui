@@ -31,6 +31,13 @@ const addDevMiddlewares = (app, webpackConfig) => {
     });
   }
 
+  const proxy = require('http-proxy-middleware');
+
+  app.use('/api', proxy({
+    target: 'http://localhost:3001',
+    changeOrigin: false,
+  }));
+
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {

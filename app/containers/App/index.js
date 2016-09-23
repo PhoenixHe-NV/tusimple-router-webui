@@ -12,7 +12,6 @@
  */
 
 import React from 'react';
-import View from 'react-flexbox';
 
 import Header from 'components/Header';
 import AppMenu from 'containers/AppMenu';
@@ -27,19 +26,17 @@ export default class App extends React.PureComponent {
 
   render() {
     return (
-      <View className={styles.container}>
-        <View className={styles.contentContainer}>
-          <View className={styles.menu}>
-            <AppMenu />
-          </View>
-          <View className={styles.content}>
-            { React.Children.toArray(this.props.children) }
-          </View>
-        </View>
-        <View className={styles.headerContainer}>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          { React.Children.toArray(this.props.children) }
+        </div>
+        <div className={styles.menu}>
+          <AppMenu />
+        </div>
+        <div className={styles.header}>
           <Header />
-        </View>
-      </View>
+        </div>
+      </div>
     );
   }
 }

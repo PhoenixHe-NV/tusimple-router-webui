@@ -15,7 +15,7 @@ dependencies in `package.json` and then write your `mapStateToProps` functions
 like you normally would!
 
 You'll also need to hook up the history directly to the store. Change the const
-`history` in `app/app.js` to the following:
+`history` in `app/index.js` to the following:
 
 ```js
 const history = syncHistoryWithStore(browserHistory, store, {
