@@ -4,15 +4,17 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import HelmetIntl from 'components/HelmetIntl';
+import FlatButton from 'material-ui/FlatButton';
+
 import selectStatusPage from './selectors';
-import reducer from './reducer';
-import sagas from './sagas';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
+
+import { actions, reducer, sagas } from './actions';
 
 class StatusPage extends React.Component {
 
@@ -21,13 +23,25 @@ class StatusPage extends React.Component {
     sagas,
   };
 
+  static propTypes = {
+    counter: PropTypes.number,
+    isLoading: PropTypes.bool,
+    dispatch: PropTypes.func,
+  };
+
+  componentWillMount() {
+    this.props.dispatch(actions.getCounter());
+  }
+
   render() {
+    const { counter, isLoading, dispatch } = this.props;
     return (
       <div className={styles.statusPage}>
         <HelmetIntl appTitle={messages.title} />
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
+        <div>{isLoading ? 'Loading' : 'Loaded'}</div>
+        <div>counter: {counter}</div>
+        <FlatButton label="+" onTouchTap={() => dispatch(actions.testAdd(1))} />
+        <FlatButton label="-" onTouchTap={() => dispatch(actions.testAdd(-1))} />
       </div>
     );
   }

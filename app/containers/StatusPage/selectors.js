@@ -16,7 +16,7 @@ const selectStatusPageDomain = () => (state) => state.get('statusPage');
 
 const selectStatusPage = () => createSelector(
   selectStatusPageDomain(),
-  (substate) => substate.toJS()
+  (state) => state.toJS()
 );
 
 export default selectStatusPage;
