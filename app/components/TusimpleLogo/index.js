@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import rawLogo from '-!raw!./tusimple-logo.svg';
 import styles from './tusimple-logo.css';
 
+/* eslint-disable react/no-danger */
+
 export default class TuSimpleLogo extends PureComponent {
 
   render() {

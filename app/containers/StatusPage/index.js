@@ -5,6 +5,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import HelmetIntl from 'components/HelmetIntl';
 import FlatButton from 'material-ui/FlatButton';
@@ -26,22 +27,24 @@ class StatusPage extends React.Component {
   static propTypes = {
     counter: PropTypes.number,
     isLoading: PropTypes.bool,
-    dispatch: PropTypes.func,
+    plusOne: PropTypes.func,
+    minusOne: PropTypes.func,
+    getCounter: PropTypes.func,
   };
 
   componentWillMount() {
-    this.props.dispatch(actions.getCounter());
+    this.props.getCounter();
   }
 
   render() {
-    const { counter, isLoading, dispatch } = this.props;
+    const { counter, isLoading, plusOne, minusOne } = this.props;
     return (
       <div className={styles.statusPage}>
         <HelmetIntl appTitle={messages.title} />
         <div>{isLoading ? 'Loading' : 'Loaded'}</div>
         <div>counter: {counter}</div>
-        <FlatButton label="+" onTouchTap={() => dispatch(actions.testAdd(1))} />
-        <FlatButton label="-" onTouchTap={() => dispatch(actions.testAdd(-1))} />
+        <FlatButton label="+" onTouchTap={plusOne} />
+        <FlatButton label="-" onTouchTap={minusOne} />
       </div>
     );
   }
@@ -50,7 +53,9 @@ class StatusPage extends React.Component {
 
 export default connect(
   selectStatusPage(),
-  (dispatch) => ({
-    dispatch,
-  })
+  (dispatch) => bindActionCreators({
+    getCounter: () => actions.getCounter(),
+    plusOne: () => actions.testAdd(1),
+    minusOne: () => actions.testAdd(-1),
+  }, dispatch),
 )(StatusPage);

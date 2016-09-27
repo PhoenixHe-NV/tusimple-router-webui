@@ -15,6 +15,7 @@ import React from 'react';
 
 import Header from 'components/Header';
 import AppMenu from 'containers/AppMenu';
+import ErrorIndicator from 'containers/ErrorIndicator';
 
 import styles from './styles.css';
 
@@ -27,17 +28,22 @@ export default class App extends React.PureComponent {
   render() {
     return (
       <div className={styles.container}>
+
         <div className={styles.contentContainer}>
           <div className={styles.content}>
             { React.Children.toArray(this.props.children) }
           </div>
         </div>
+
         <div className={styles.menu}>
           <AppMenu />
         </div>
+
         <div className={styles.header}>
           <Header />
         </div>
+
+        <ErrorIndicator />
       </div>
     );
   }

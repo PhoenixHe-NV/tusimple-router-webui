@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const logger = require('../../server/logger');
 const cheerio = require('cheerio');
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
+const pkg = require(path.resolve(process.cwd(), 'package.json')); // eslint-disable-line
 const dllPlugin = pkg.dllPlugin;
 
 const plugins = [
@@ -46,7 +46,8 @@ module.exports = require('./webpack.base.babel')({
   },
 
   // Emit a source map for easier debugging
-  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
 });
 
 /**

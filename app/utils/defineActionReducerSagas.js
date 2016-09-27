@@ -7,7 +7,7 @@ function camelCaseToUpperCase(name) {
   ).join('');
 }
 
-export default function defineActionReducerSagas(prefix, initialState, handlers) {
+export default function define(prefix, initialState, handlers) {
   const actions = {};
   const actionMap = {};
   const sagas = [];
@@ -58,6 +58,7 @@ export default function defineActionReducerSagas(prefix, initialState, handlers)
         const data = yield call(request, action);
         yield put({ type: SUCCESS_TYPE, data });
       } catch (error) {
+        console.log(error);
         yield put({ type: FAILED_TYPE, error });
       }
     }

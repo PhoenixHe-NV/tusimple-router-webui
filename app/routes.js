@@ -9,19 +9,21 @@ import StatusPage from 'containers/StatusPage';
 import SettingPage from 'containers/SettingPage';
 import NotFoundPage from 'containers/NotFoundPage';
 import AppMenu from 'containers/AppMenu';
+import ErrorIndicator from 'containers/ErrorIndicator';
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
-  const pages = {
+  const containers = {
     AppMenu,
     SettingPage,
     StatusPage,
+    ErrorIndicator,
   };
 
-  Object.keys(pages).forEach((pageName) => {
-    const { toInject } = pages[pageName];
+  Object.keys(containers).forEach((pageName) => {
+    const { toInject } = containers[pageName];
 
     if (!toInject) {
       return;
