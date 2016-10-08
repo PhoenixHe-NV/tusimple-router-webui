@@ -17,16 +17,27 @@ function handleResponse(rsp) {
   });
 }
 
-export default class api {
-  static get = (url) => fetch(basePath + url, {
-    method: 'GET',
-    timeout: 500,
-  }).then(handleResponse);
 
-  static post = (url, data) => fetch(basePath + url, {
-    method: 'POST',
-    timeout: 500,
-    headers: postHeader,
-    body: JSON.stringify(data),
-  }).then(handleResponse);
+export default class api {
+
+  getUrl(u, params) {
+    const searchParams = new URLSearchParams();
+    Object.keys(params).forEach((key) =>
+      searchParams.append(key, params[key]));
+    return `${u}?${searchParams.toString()}`;
+  }
+
+  static get = (url) =>
+    fetch(basePath + url, {
+      method: 'GET',
+      timeout: 500,
+    }).then(handleResponse);
+
+  static post = (url, data = {}) =>
+    fetch(basePath + url, {
+      method: 'POST',
+      timeout: 500,
+      headers: postHeader,
+      body: JSON.stringify(data),
+    }).then(handleResponse);
 }

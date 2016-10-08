@@ -33,10 +33,12 @@ const addDevMiddlewares = (app, webpackConfig) => {
 
   const proxy = require('http-proxy-middleware');
 
-  app.use('/api', proxy({
+  const proxyObject = proxy({
     target: 'http://localhost:3001',
     changeOrigin: false,
-  }));
+  });
+  app.use('/api', proxyObject);
+  app.use('/swaggerui', proxyObject);
 
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
