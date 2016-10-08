@@ -1,6 +1,4 @@
 const basePath = '/api/v1';
-const postHeader = new Headers();
-postHeader.append('Content-Type', 'application/json');
 
 function handleResponse(rsp) {
   return new Promise((resolve, reject) => {
@@ -17,27 +15,31 @@ function handleResponse(rsp) {
   });
 }
 
-
-export default class api {
-
-  getUrl(u, params) {
-    const searchParams = new URLSearchParams();
-    Object.keys(params).forEach((key) =>
-      searchParams.append(key, params[key]));
-    return `${u}?${searchParams.toString()}`;
-  }
-
-  static get = (url) =>
-    fetch(basePath + url, {
-      method: 'GET',
-      timeout: 500,
-    }).then(handleResponse);
-
-  static post = (url, data = {}) =>
-    fetch(basePath + url, {
-      method: 'POST',
-      timeout: 500,
-      headers: postHeader,
-      body: JSON.stringify(data),
-    }).then(handleResponse);
+function getParam(params) {
+  const searchParams = new URLSearchParams();
+  Object.keys(params).forEach((key) =>
+    searchParams.append(key, params[key]));
+  const query = searchParams.toString();
+  return query ? `?${query}` : '';
 }
+
+function request(method, url, params = {}, body) {
+  return fetch(basePath + url + getParam(params), {
+    method,
+    body,
+    timeout: 500,
+  }).then(handleResponse);
+}
+
+export default {
+
+  request,
+
+  get(...args) {
+    return request.apply(this, ['GET', ...args]);
+  },
+
+  post(...args) {
+    return request.apply(this, ['POST', ...args]);
+  },
+};
