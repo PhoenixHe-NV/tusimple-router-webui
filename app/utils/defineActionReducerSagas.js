@@ -7,16 +7,51 @@ function camelCaseToUpperCase(name) {
   ).join('');
 }
 
+/*
+ Examples:
+ const { actions, reducer, sagas } = defineActionReducerSagas('StatusPage/', {
+   isLoading: false,
+   data: 0,
+ }, {
+
+ // Reducer for action addCounter. The data field is the parameter of the action call.
+ addCounter: (state, action) => state.set('data', state.get('data') + action.data),
+
+ // Use saga for all the async actions.
+ getCounter: {
+   // Switch this key when start request, go success, or go failed
+   key: 'isLoading',
+
+   // Set this for parallel call
+   saga: 'parallel'
+
+   // Request function should return a promise. Called from sage take()
+   request: (action) => api.get('/counter'),
+
+   // Set the data when success. The data field is what the request promise resolves.
+   success: (state, action) => state.set('counter', action.data.counter),
+
+   // Do nothing when fail. This field could be omitted for no action.
+   // The error is what throws during the request.
+   failed: (state, error) => state,
+ },
+ });
+
+ dispatch(actions.addCounter(100));
+ dispatch(actions.getCounter());
+ */
 export default function define(prefix, initialState, handlers) {
   const actions = {};
   const actionMap = {};
   const sagas = [];
 
   Object.keys(handlers).forEach((actionName) => {
+    // actionName => prefix/ACTION_NAME
     const type = prefix + camelCaseToUpperCase(actionName);
     const handler = handlers[actionName];
 
     if (typeof handler === 'function') {
+      // Sync action
       const action = (data) => ({ type, data });
       action.type = type;
       actions[actionName] = action;
@@ -24,18 +59,18 @@ export default function define(prefix, initialState, handlers) {
       return;
     }
 
+    // Async action
     const { key, request, success, failed, saga } = handler;
+    // prefix/ACTION_NAME_REQUEST
     const REQUEST_TYPE = type.concat('_REQUEST');
+    // prefix/ACTION_NAME_SUCCESS
     const SUCCESS_TYPE = type.concat('_SUCCESS');
+    // prefix/ACTION_NAME_FAILED
     const FAILED_TYPE = type.concat('_FAILED');
 
     registerAction(actionName, REQUEST_TYPE, key, true, null);
     registerAction(actionName.concat('Success'), SUCCESS_TYPE, key, false, success);
     registerAction(actionName.concat('Failed'), FAILED_TYPE, key, false, failed);
-
-    if (!saga) {
-      return;
-    }
 
     sagas.push(saga === 'parallel' ? asyncSagaParallel : asyncSaga);
 
@@ -68,6 +103,7 @@ export default function define(prefix, initialState, handlers) {
 
   function registerAction(name, type, key, setLoading, handler) {
     const actionFunc = (data) => ({ type, data });
+    // Use actions.actionName.type to get the type
     actionFunc.type = type;
     actions[name] = actionFunc;
 

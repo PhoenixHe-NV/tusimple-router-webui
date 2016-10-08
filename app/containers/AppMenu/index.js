@@ -15,8 +15,6 @@ import { List, ListItem, MakeSelectable } from 'material-ui/List';
 import { push } from 'react-router-redux';
 
 import palette from '../../palette';
-import selectAppMenu from './selectors';
-import reducer from './reducer';
 import { FormattedMessage } from 'react-intl';
 import styles from './styles.css';
 
@@ -24,10 +22,6 @@ import styles from './styles.css';
 const SelectableList = MakeSelectable(List);
 
 class AppMenu extends Component {
-
-  static toInject = {
-    reducer,
-  };
 
   static propTypes = {
     push: PropTypes.func,
@@ -94,7 +88,7 @@ class AppMenu extends Component {
 }
 
 export default connect(
-  selectAppMenu(),
+  null,
   (dispatch) => bindActionCreators({
     push,
   }, dispatch)

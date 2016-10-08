@@ -4,12 +4,19 @@
  *
  */
 
-import {
-  DEFAULT_ACTION,
-} from './constants';
+import defineActionReducerSagas from '../../utils/defineActionReducerSagas';
+import api from '../../utils/api';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+const { actions, reducer, sagas } = defineActionReducerSagas('{{ properCase name }}/', {
+  isLoading: false,
+}, {
+  syncAction: (state, action) => state,
+  asyncAction: {
+    key: 'isLoading',
+    request: (action) => null,
+    success: (state, action) => state,
+    failed: (state, error) => state,
+  },
+});
+
+export { actions, reducer, sagas };

@@ -70,3 +70,24 @@ export function getAsyncInjectors(store) {
     injectSagas: injectAsyncSagas(store, true),
   };
 }
+
+export function injectContainers(store, containers) {
+  const { injectReducer, injectSagas } = getAsyncInjectors(store);
+
+  Object.keys(containers).forEach((pageName) => {
+    const { toInject } = containers[pageName];
+
+    if (!toInject) {
+      return;
+    }
+
+    if (toInject.reducer) {
+      const name = pageName[0].toLowerCase() + pageName.slice(1);
+      injectReducer(name, toInject.reducer);
+    }
+
+    if (toInject.sagas) {
+      injectSagas(toInject.sagas);
+    }
+  });
+}
